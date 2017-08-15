@@ -1,3 +1,5 @@
+![Hinaface](https://raw.githubusercontent.com/kotborealis/hinaface/master/hinaface.png)
+
 # Hinaface
 
 Small file upload server for friends and stupid crap
