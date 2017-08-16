@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hinaface</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Hinaface~</h1>
+        <p class="lead">Max upload size is 500MiB</p>
+        <form id="upload-form" enctype="multipart/form-data" method="post" action="upload.php?output=html">
+            <button id="upload-btn" class="btn" type="button">Select or drop file(s)</button>
+            <input type="file" id="upload-input" name="files[]" multiple data-max-size="{{max_upload_size}}MiB">
+            <input type="submit" value="Submit">
+        </form>
+        <ul id="upload-filelist"></ul>
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>
