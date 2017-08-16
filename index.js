@@ -10,6 +10,7 @@ const statAsync = promisify(fs.stat);
 const path = require('path');
 
 http.createServer((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
 	const form = new formidable.IncomingForm();
 	form.multiples = true;
 	form.hash = 'md5';
