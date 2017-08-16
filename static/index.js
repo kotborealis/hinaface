@@ -100,30 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.textContent = response[0].replace(/.*?:\/\//g, '');
                 link.href = response[0];
                 url.appendChild(link);
-                var copy = document.createElement('button');
-                copy.className = 'upload-clipboard-btn';
-                //var glyph = document.createElement('img');
-                //glyph.src = './glyphicons-512-copy.png';
-                //copy.appendChild(glyph);
-                url.appendChild(copy);
-                copy.addEventListener("click", function(event) {
-                    /* Why create an element?  The text needs to be on screen to be
-                       selected and thus copied. The only text we have on-screen is the link
-                       without the http[s]:// part. So, this creates an element with the
-                       full link for a moment and then deletes it.
-
-                       See the "Complex Example: Copy to clipboard without displaying
-                       input" section at: https://stackoverflow.com/a/30810322 */
-                    var element = document.createElement('a');
-                    element.textContent = response[0];
-                    link.appendChild(element);
-                    var range = document.createRange();
-                    range.selectNode(element);
-                    window.getSelection().removeAllRanges();
-                    window.getSelection().addRange(range);
-                    document.execCommand("copy");
-                    link.removeChild(element);
-                });
             } else {
                 bar.innerHTML = 'Error!';
             }

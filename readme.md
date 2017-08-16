@@ -1,4 +1,4 @@
-![Hinaface](https://raw.githubusercontent.com/kotborealis/hinaface/master/hinaface.png)
+![Hinaface](https://raw.githubusercontent.com/kotborealis/hinaface/master/static/hinaface.png)
 
 # Hinaface
 

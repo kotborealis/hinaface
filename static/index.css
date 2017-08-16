@@ -395,12 +395,3 @@ progress[value]::-webkit-progress-bar {
 .js #upload-btn {
     display: inline-block !important;
 }
-
-#upload-filelist > li > span.file-url > button{
-    background: url(./glyphicons-512-copy.png);
-    height: 24px;
-    width: 24px;
-    border: none;
-    margin-left: 10px;
-    padding: 5px;
-}
