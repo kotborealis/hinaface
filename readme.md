@@ -2,7 +2,7 @@
 
 # Hinaface
 
-Small file upload server for friends and stupid crap
+Small file upload server for friends and stupid crap. Files are stored for 4 days by default. Max file size is 500mb by default.
 
 ## Installation
 
@@ -15,4 +15,3 @@ Small file upload server for friends and stupid crap
 ## Todo
 
 * Frontend page
-* Autoremove old files

@@ -6,6 +6,7 @@ const fs = require('fs');
 const unlinkAsync = promisify(fs.unlink);
 const renameAsync = promisify(fs.rename);
 const readdirAsync = promisify(fs.readdir);
+const statAsync = promisify(fs.stat);
 const path = require('path');
 
 http.createServer((req, res) => {
@@ -34,5 +35,25 @@ http.createServer((req, res) => {
 		})));
 	});
 }).listen(config.http.port);
+
+const cleanup = async () => {
+	const files = await readdirAsync(path.join(__dirname, config.upload.dir));
+	files.filter(i => i[0] !== '.').forEach(async file => {
+		const file_path = path.join(__dirname, config.upload.dir, file);
+		const stats = await statAsync(file_path);
+		if(!stats.isFile()){
+			return;
+		}
+
+		const now = Date.now();
+		const endTime = new Date(stats.ctime).getTime() + config.cleanup.age * 1000;
+
+		if(now > endTime){
+			await unlinkAsync(file_path);
+		}
+	});
+};
+
+setInterval(cleanup, config.cleanup.interval * 1000);
 
 process.on('unhandledRejection', console.error.bind(console));

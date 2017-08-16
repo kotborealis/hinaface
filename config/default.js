@@ -8,5 +8,9 @@ module.exports = {
 	upload: {
 		dir: './content',
 		max_size: 500 * 1024 * 1024 // 500 mb
+	},
+	cleanup: {
+		age: 60 * 24 * 4, // seconds
+		interval: 60 // seconds
 	}
 }
