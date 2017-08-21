@@ -119,10 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {HTMLLIElement} row
      */
     function uploadFile(file, row) {
+        const upload_endpoint = document.querySelector('form').action;
         var bar = row.querySelector('.file-progress');
         var percentIndicator = row.querySelector('.progress-percent');
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://127.0.0.1:8088/');
+        xhr.open('POST', upload_endpoint);
 
         xhr['row'] = row;
         xhr['bar'] = bar;

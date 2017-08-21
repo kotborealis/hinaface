@@ -1,4 +1,6 @@
+const config = require('chen.js').config.resolve();
 
+const gen = (config) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +12,8 @@
 <div class="container">
     <div class="jumbotron">
         <h1><img src="./hinaface.png" height="256"/>~</h1>
-        <p class="lead">Max upload size is 500MiB</p>
-        <form id="upload-form" enctype="multipart/form-data" method="post" action="http://127.0.0.1:8088">
+        <p class="lead">Max upload size is ${config.upload.max_size / 1024 / 1024}MiB</p>
+        <form id="upload-form" enctype="multipart/form-data" method="post" action="${config.public.upload}">
             <button id="upload-btn" class="btn" type="button">Select or drop file(s)</button>
             <input type="file" id="upload-input" name="files[]" multiple>
             <input type="submit" value="Submit">
@@ -22,3 +24,7 @@
 </body>
 <script src="./index.js"></script>
 </html>
+`;
+
+console.log("AAAAAA");
+require('fs').writeFileSync('./static/index.html', gen(config));
