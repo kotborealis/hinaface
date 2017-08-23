@@ -55,6 +55,6 @@ const cleanup = async () => {
 	});
 };
 
-setInterval(cleanup, config.cleanup.interval * 1000);
+// setInterval(cleanup, config.cleanup.interval * 1000);
 
 process.on('unhandledRejection', console.error.bind(console));
