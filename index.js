@@ -9,6 +9,10 @@ const readdirAsync = promisify(fs.readdir);
 const statAsync = promisify(fs.stat);
 const path = require('path');
 const indexTemplate = require('./templates/index');
+const nodeStatic = require('node-static');
+
+const staticHandler = new nodeStatic.Server('./static');
+const contentHandler = new nodeStatic.Server('./content');
 
 http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -39,13 +43,16 @@ http.createServer((req, res) => {
 			})));
 		});
 	}
-
-	if(req.url === '/' || req.url === '/index.html')
+    else if(req.url.indexOf('/content') === 0){
+		contentHandler.serve({
+			...req,
+			url: req.url.slice(`/content`.length)
+		}, res);
+	}
+	else if(req.url === '/' || req.url === '/index.html')
 		res.end(indexTemplate(config));
-	else if(req.url === '/index.css')
-		fs.readFile('./static/index.css', (err, data) => res.end(data));
-	else if(req.url === '/index.js')
-		fs.readFile('./static/index.js', (err, data) => res.end(data));
+	else
+		staticHandler.serve(req, res);
 }).listen(config.http.port);
 
 const cleanup = async () => {
