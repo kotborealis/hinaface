@@ -15,9 +15,8 @@ const staticHandler = new nodeStatic.Server('./static');
 const contentHandler = new nodeStatic.Server('./content');
 
 http.createServer((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
     if(req.url === '/upload' || req.url === '/upload/') {
+		res.setHeader('Access-Control-Allow-Origin', '*');
 		const form = new formidable.IncomingForm();
 		form.multiples = true;
 		form.hash = 'md5';
