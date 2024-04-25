@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chen.js": "2.1.0",
-    "formidable": "^1.1.1",
+    "formidable": "^3.2.4",
     "node-static": "^0.7.11"
   }
 }
